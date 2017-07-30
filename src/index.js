@@ -1,7 +1,7 @@
-// ReactDOM.render(<App />, document.getElementById('root'))
+// ReactDOM.render(<App />, document.getElementById('root')) // <App /> SHOULD BE <Game />
 
         // <div className="board-row">
-        //   <renderSqaure(1) className="square" />
+        //   <renderSqaure(1) className="square" /> //SHOULD BE {this.renderSquare(0)}
         //   <renderSqaure(2) className="square" />
         //   <renderSqaure(3) className="square" />
         // </div>
@@ -17,6 +17,14 @@
         //   <renderSqaure(8) className="square" />
         //   <renderSqaure(9) className="square" />
         // </div>
+      // <button className="square">
+      //   {...this.props.value}  //SHOULD BE {this.props.value}
+      // </button>
+
+  // renderSquare(i){
+  //   return <Square value = i/> //SHOULD BE return <Square value ={i} />  
+  // }      
+
 import React from 'react';
 import './index.css'
 import ReactDOM from 'react-dom'
@@ -25,7 +33,7 @@ class Square extends React.Component{
   render(){
     return(
       <button className="square">
-        {/* TODO */}
+        {this.props.value}
       </button>
     )
   }
@@ -33,7 +41,7 @@ class Square extends React.Component{
 
 class Board extends React.Component{
   renderSquare(i){
-    return <Square />
+    return <Square value = {i}/>
   }
 
   render(){
