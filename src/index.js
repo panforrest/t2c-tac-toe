@@ -1,22 +1,16 @@
-  // renderSquare(i){
-  //   return <Square 
-  //            value = {this.state.squares[i]}
-  //            onClick = {this.handleClick.bind(this)}//SHOULD BE {() => this.handleClick(i)}
-  //          />
-  // }
+      // <button className="square" onClick={() => this.props.onClick()}>   // SHOULD BE onClick = {props.onClick}
+      //   {this.props.value}  // SHOULD BE {props.value}
+      // </button>
 import React from 'react';
 import './index.css'
 import ReactDOM from 'react-dom'
 
-class Square extends React.Component{
-
-  render(){
+function Square(props){  //NOT function Square = () => {
     return(
-      <button className="square" onClick={() => this.props.onClick()}>
-        {this.props.value}
+      <button className="square" onClick={props.onClick}>
+        {props.value}
       </button>
     )
-  }
 }
 
 class Board extends React.Component{
