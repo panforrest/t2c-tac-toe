@@ -25,7 +25,11 @@
   //   return <Square value = i/> //SHOULD BE return <Square value ={i} />  
   // } 
 
-        // <button className="square" onClick="alert(Add Value)"> //SHOULD BE: onClick={() => alert('click')}    
+        // <button className="square" onClick="alert(Add Value)"> //SHOULD BE: onClick={() => alert('click')}  
+
+  // renderSquare(i){
+  //   return <Square value = {this.state.value(i)}/>//SHOULD {this.state.square[i]}
+  // }          
 
 import React from 'react';
 import './index.css'
@@ -49,8 +53,16 @@ class Square extends React.Component{
 }
 
 class Board extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      // SHOULD NOT BE board: number(9).fill(null)
+      square: Array(9).fill(null)    //array(9)
+    }
+  }
+
   renderSquare(i){
-    return <Square value = {i}/>
+    return <Square value = {this.state.square[i]}/>
   }
 
   render(){
