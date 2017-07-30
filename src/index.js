@@ -1,52 +1,19 @@
-// ReactDOM.render(<App />, document.getElementById('root')) // <App /> SHOULD BE <Game />
-
-        // <div className="board-row">
-        //   <renderSqaure(1) className="square" /> //SHOULD BE {this.renderSquare(0)}
-        //   <renderSqaure(2) className="square" />
-        //   <renderSqaure(3) className="square" />
-        // </div>
-
-        // <div className="board-row">
-        //   <renderSqaure(4) className="square" />
-        //   <renderSqaure(5) className="square" />
-        //   <renderSqaure(6) className="square" />
-        // </div>
-
-        // <div className="board-row">
-        //   <renderSqaure(7) className="square" />
-        //   <renderSqaure(8) className="square" />
-        //   <renderSqaure(9) className="square" />
-        // </div>
-      // <button className="square">
-      //   {...this.props.value}  //SHOULD BE {this.props.value}
-      // </button>
-
   // renderSquare(i){
-  //   return <Square value = i/> //SHOULD BE return <Square value ={i} />  
-  // } 
-
-        // <button className="square" onClick="alert(Add Value)"> //SHOULD BE: onClick={() => alert('click')}  
-
-  // renderSquare(i){
-  //   return <Square value = {this.state.value(i)}/>//SHOULD {this.state.square[i]}
-  // }          
-
+  //   return <Square 
+  //            value = {this.state.squares[i]}
+  //            onClick = {this.handleClick.bind(this)}//SHOULD BE {() => this.handleClick(i)}
+  //          />
+  // }
 import React from 'react';
 import './index.css'
 import ReactDOM from 'react-dom'
 
 class Square extends React.Component{
-  constructor(){
-    super()
-    this.state = {
-      value: null
-    }
-  }
 
   render(){
     return(
-      <button className="square" onClick={() => this.setState({value: 'X'})}>
-        {this.state.value}
+      <button className="square" onClick={() => this.props.onClick()}>
+        {this.props.value}
       </button>
     )
   }
@@ -57,12 +24,21 @@ class Board extends React.Component{
     super()
     this.state = {
       // SHOULD NOT BE board: number(9).fill(null)
-      square: Array(9).fill(null)    //array(9)
+      squares: Array(9).fill(null)    //array(9)
     }
   }
 
+  handleClick(i){
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares}) 
+  }
+
   renderSquare(i){
-    return <Square value = {this.state.square[i]}/>
+    return <Square 
+             value = {this.state.squares[i]}
+             onClick = {() => this.handleClick(i)}
+           />
   }
 
   render(){
