@@ -1,8 +1,8 @@
-  // handleClick(i){
-  //   const squares = this.state.squares.slice();
-  //   if (winner) { //SHOULD BE 
-  //     return
-  //   }
+      // return (
+      //   <li key={move}>
+      //     <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+      //   </li>
+      // )
 import React from 'react';
 import './index.css'
 import ReactDOM from 'react-dom'
@@ -70,7 +70,6 @@ class Game extends React.Component{
     }
     squares[i] = (this.state.xIsNext) ? 'X' : 'O';
     this.setState({
-      // squares: squares, 
       history: history.concat([{
         squares: squares,
         clickedLocation: [Math.floor(i / 3) + 1, i % 3 + 1],
@@ -105,11 +104,20 @@ class Game extends React.Component{
       const desc = move ?
         'Move #' + move + '(' + clickedLocation[0] + ', ' + clickedLocation[1] +')':
         'Game Start'
-      return (
-        <li key={move}>
-          <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
-        </li>
-      )
+
+      if (move == history.length - 1){
+        return (
+          <li key={move}>
+            <a href="#" onClick={() => this.jumpTo(move)} style={{fontWeight:"bold", fontSize:"22px"}}>{desc}</a>
+          </li>
+        )
+      } else {
+        return (
+          <li key={move}>
+            <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+          </li>
+        )        
+      }
     })
 
     return(
